@@ -1,0 +1,34 @@
+test_metadata:
+  type: config
+  name: function
+  description: basic function with triggers
+
+distribution:
+  bucket: source.example.dev
+  prefix: /lambda
+
+functions:
+  myfunction:
+      handler: handler.lambda_handler
+      runtime: python3.9
+      code_uri: myfunction/src.zip
+      timeout: 30
+      environment:
+        Environment: dev
+      policies:
+        logs:
+          action:
+            - logs:PutLogEvents
+            - logs:DescribeLogStreams
+            - logs:DescribeLogGroups
+          resource:
+            - '*'
+      enable_eni: true
+      log_retention: 7
+      events:
+        cron:
+          type: schedule
+          expression: cron(0 12 * * ? *)
+          payload: "{ 'a': 1, 'b': 2 }"
+        trigger:
+          type: sns

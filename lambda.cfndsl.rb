@@ -176,10 +176,6 @@ CloudFormation do
           end if targetgroup.has_key?('tags')
     
           ElasticLoadBalancingV2_TargetGroup(targetgroup['resource_name']) do
-            ## Required
-            # Port targetgroup['port']
-            # Protocol targetgroup['protocol'].upcase
-            VpcId Ref('VPCId')
             ## Optional
             if targetgroup.has_key?('healthcheck')
               HealthCheckPort targetgroup['healthcheck']['port'] if targetgroup['healthcheck'].has_key?('port')
