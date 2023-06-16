@@ -194,7 +194,8 @@ CloudFormation do
     
             TargetType targetgroup['type'] if targetgroup.has_key?('type')
             TargetGroupAttributes attributes if attributes.any?
-    
+            Targets(FnGetAtt("#{function_name}", 'Arn'))
+
             Tags tg_tags
           end
           
