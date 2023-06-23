@@ -193,9 +193,7 @@ CloudFormation do
               print targetgroup['name']
               print function_name
               if targetgroup['name'] == function_name
-                target = {
-                  Id: FnGetAtt("#{function_name}", 'Arn')
-                }
+                target = {Id: Ref("#{function_name}")}
                 Targets(target)
                 DependsOn [function_name]
                 end
