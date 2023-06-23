@@ -189,6 +189,7 @@ CloudFormation do
             end
 
             if targetgroup.has_key?('target')
+              print 'aaa'
               print targetgroup['name']
               print function_name
               if targetgroup['name'] == function_name
