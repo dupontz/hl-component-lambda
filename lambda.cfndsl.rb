@@ -194,7 +194,7 @@ CloudFormation do
               print function_name
               if targetgroup['name'] == function_name
                 target = {
-                  Id: FnGetAtt(FnSub("arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function/#{function_name}"), 'Arn') 
+                  Id: FnGetAtt(:function_name, :Arn) 
                 }
                 Targets([target])
                 DependsOn [function_name]
