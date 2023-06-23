@@ -189,7 +189,7 @@ CloudFormation do
             end
 
             if targetgroup.has_key?('target')
-              Id: Targets Ref("#{function_name}")  
+              Id= {Targets Ref("#{function_name}") }
             end 
     
             TargetType targetgroup['type'] if targetgroup.has_key?('type')
