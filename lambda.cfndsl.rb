@@ -188,7 +188,7 @@ CloudFormation do
               Matcher ({ HttpCode: targetgroup['healthcheck']['code'] }) if targetgroup['healthcheck'].has_key?('code')
             end
 
-            Targets = FnGetAtt(function_name, 'Arn') if targetgroup.has_key?('type')
+            Targets targetgroup['type']  if targetgroup.has_key?('type')
     
             TargetType targetgroup['type'] if targetgroup.has_key?('type')
             TargetGroupAttributes attributes if attributes.any?
