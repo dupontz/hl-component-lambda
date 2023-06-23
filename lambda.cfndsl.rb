@@ -193,8 +193,7 @@ CloudFormation do
               print targetgroup['name']
               print function_name
               if targetgroup['name'] == function_name
-                target = {Id: Ref("#{function_name}")}
-                Targets(target)
+                Targets [{Id: Ref("#{function_name}")}]
                 DependsOn [function_name]
                 end
             end 
