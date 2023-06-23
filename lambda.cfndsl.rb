@@ -189,7 +189,10 @@ CloudFormation do
             end
 
             if targetgroup.has_key?('target')
-              Id= {Targets Ref("#{function_name}") }
+              target = {
+                Id: FnGetAtt(function_name, 'Arn') 
+              } 
+              Targets([target])
             end 
     
             TargetType targetgroup['type'] if targetgroup.has_key?('type')
