@@ -188,7 +188,7 @@ CloudFormation do
               Matcher ({ HttpCode: targetgroup['healthcheck']['code'] }) if targetgroup['healthcheck'].has_key?('code')
             end
 
-            Targets Ref("#{function_name}")  if targetgroup.has_key?('type')
+            Targets Ref("#{function_name}")  if targetgroup.has_key?('target')
     
             TargetType targetgroup['type'] if targetgroup.has_key?('type')
             TargetGroupAttributes attributes if attributes.any?
