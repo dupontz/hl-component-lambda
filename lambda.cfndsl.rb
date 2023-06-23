@@ -141,7 +141,7 @@ CloudFormation do
     service_loadbalancer = []
     # targetgroups = lambda_config['targetgroup'] if lambda_config.has_key?('targetgroup')
     # targetgroups = external_parameters.fetch(lambda_config['targetgroup'], {})
-    targetgroups = external_parameters.fetch(:targetgroup[function_name], {})
+    targetgroups = external_parameters.fetch(:targetgroup["ProductsApi"], {})
     
     # print "aaa"
 
