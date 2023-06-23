@@ -189,14 +189,14 @@ CloudFormation do
             end
 
             if targetgroup.has_key?('Targets')
-            
+              Targets {
+                Id: FnGetAtt("#{function_name}", 'Arn')
+              }
             end
     
             TargetType targetgroup['type'] if targetgroup.has_key?('type')
             TargetGroupAttributes attributes if attributes.any?
-            Targets [{
-              Id: FnGetAtt("#{function_name}", 'Arn')
-            }]
+            
 
             Tags tg_tags
           end
