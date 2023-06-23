@@ -193,7 +193,7 @@ CloudFormation do
                 Id: FnGetAtt(function_name, 'Arn') 
               }
               Targets([target])
-              DependsOn ['#{function_name}']
+              DependsOn [function_name]
             end 
     
             TargetType targetgroup['type'] if targetgroup.has_key?('type')
