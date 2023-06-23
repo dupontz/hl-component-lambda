@@ -190,7 +190,7 @@ CloudFormation do
 
             if targetgroup.has_key?('Targets')
               Targets {
-                Id: FnGetAtt("#{function_name}", 'Arn')
+                Id: FnGetAtt(function_name, 'Arn')
               }
             end
     
