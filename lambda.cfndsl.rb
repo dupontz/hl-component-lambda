@@ -99,6 +99,12 @@ CloudFormation do
           SourceArn FnGetAtt("#{function_name}Schedule#{name}", 'Arn')
         end
 
+        Lambda_Permission("#{function_name}#{name}PermissionsELB") do
+          FunctionName Ref(function_name)
+          Action 'lambda:InvokeFunction'
+          Principal 'elasticloadbalancing.amazonaws.com'
+        end
+
       when 'sns'
 
         SNS_Topic("#{function_name}Sns#{name}") do
@@ -194,7 +200,7 @@ CloudFormation do
               print function_name
               if targetgroup['name'] == function_name
                 Targets [{Id: FnGetAtt("#{function_name}", "Arn"), "AvailabilityZone": "all"}]
-                # DependsOn [function_name]
+                DependsOn ["#{function_name}#{name}PermissionsELB"]
                 end
             end 
     
