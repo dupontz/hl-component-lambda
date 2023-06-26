@@ -194,7 +194,7 @@ CloudFormation do
               print function_name
               if targetgroup['name'] == function_name
                 Targets [{Id: FnGetAtt("#{function_name}", "Arn")}]
-                DependsOn [function_name]
+                # DependsOn [function_name]
                 end
             end 
     
