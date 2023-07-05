@@ -31,13 +31,12 @@ CloudFormation do
       EC2_SecurityGroup("#{function_name}SecurityGroup") do
         GroupDescription FnSub("${EnvironmentName}-lambda-#{function_name}")
         VpcId Ref('VPCId')
-        SecurityGroupIngress:[ {
-
+        SecurityGroupIngress do
           IpProtocol "tcp"
           FromPort "443"
           ToPort "443"
           CidrIp "0.0.0.0/0"
-        }]
+        end
         Tags tags
       end
 
